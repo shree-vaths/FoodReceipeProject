@@ -1,5 +1,6 @@
 'use server'
 import { saveMeal } from '@/lib';
+import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
   export async function shareMeal(formData){
@@ -14,6 +15,6 @@ import { redirect } from 'next/navigation';
     };
 
     await saveMeal(meal);
-
+    revalidatePath("/meals", 'layout');
     redirect("/meals");
   }
