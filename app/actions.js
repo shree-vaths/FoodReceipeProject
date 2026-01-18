@@ -1,6 +1,6 @@
 'use server'
 import { saveMeal } from '@/lib';
-import { redirect } from 'next/dist/server/api-utils';
+import { redirect } from 'next/navigation';
 
   export async function shareMeal(formData){
 
