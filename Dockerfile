@@ -20,6 +20,9 @@ ENV NEXT_TELEMETRY_DISABLED=1
 # Build the application
 RUN npm run build
 
+# Initialize the database
+RUN node initDB.js
+
 # Runner stage
 FROM node:20-alpine AS runner
 WORKDIR /app
@@ -35,6 +38,7 @@ RUN adduser --system --uid 1001 nextjs
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/meals.db ./meals.db
 
 # Set correct permissions
 RUN chown -R nextjs:nodejs /app
