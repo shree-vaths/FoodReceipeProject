@@ -17,6 +17,9 @@ COPY . .
 # Disable telemetry during build
 ENV NEXT_TELEMETRY_DISABLED=1
 
+# Initialize the database first
+RUN node initDB.js
+
 # Build the application
 RUN npm run build
 
@@ -35,6 +38,7 @@ RUN adduser --system --uid 1001 nextjs
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/meals.db ./meals.db
 
 # Set correct permissions
 RUN chown -R nextjs:nodejs /app
