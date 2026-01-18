@@ -17,11 +17,11 @@ COPY . .
 # Disable telemetry during build
 ENV NEXT_TELEMETRY_DISABLED=1
 
+# Initialize the database first
+RUN node initDB.js
+
 # Build the application
 RUN npm run build
-
-# Initialize the database
-RUN node initDB.js
 
 # Runner stage
 FROM node:20-alpine AS runner
