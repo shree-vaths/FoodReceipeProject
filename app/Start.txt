@@ -1,0 +1,11 @@
+There two types of component in Next js, server side component and client side component
+By default all the components in the NextJS project acts as server side components.
+Server Components just render on the server first, then send the HTML to the browser.
+image-slideshow.js has the state but it will not run the browser.
+We need to mention use client to make it client side component.
+We can make child component with use client and inject that into server component
+we can Suspense component to show fallback page untill data loads onto screen.
+we can create server action 'use server' inside a function, which will be executed on the server.
+This is used at function/file level.
+we cant add 'use client' and 'use server' is same file. But we can import different server into client file like Share page.js and actions.js
+
